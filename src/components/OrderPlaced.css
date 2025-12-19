@@ -1,0 +1,83 @@
+/* Order placed sidebar — matches cart/checkout width and animations */
+.order-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+  z-index: 1100;
+}
+.order-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.order-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: var(--cart-width, 420px);
+  max-width: 100%;
+  background: var(--bg, #fff);
+  transform: translateX(110%);
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1101;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 0 40px rgba(2, 6, 23, 0.12);
+}
+.order-sidebar.active {
+  transform: translateX(0);
+}
+
+.order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+.order-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.order-close {
+  background: transparent;
+  border: 0;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.order-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.order-success {
+  font-size: 3.5rem;
+}
+.order-id {
+  font-weight: 700;
+  color: var(--accent, #111827);
+}
+.order-note {
+  color: var(--muted, #6b7280);
+  text-align: center;
+}
+.order-actions {
+  width: 100%;
+  margin-top: 8px;
+}
+.order-actions .btn {
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+  .order-sidebar {
+    width: 100%;
+  }
+}

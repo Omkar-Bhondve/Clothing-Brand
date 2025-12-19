@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Cart.css";
+import { Link } from "react-router-dom";
 
 const Cart = ({
   isOpen,
@@ -91,9 +92,11 @@ const Cart = ({
               </svg>
               <h3>Your cart is empty</h3>
               <p>Add some items to get started!</p>
+              <Link to="/shop">
               <button className="btn btn-primary" onClick={handleClose}>
                 Continue Shopping
               </button>
+              </Link>
             </div>
           ) : (
             <>

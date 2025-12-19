@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
+import OrderPlaced from "./components/OrderPlaced";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
@@ -16,6 +17,8 @@ function App() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isOrderPlacedOpen, setIsOrderPlacedOpen] = useState(false);
+  const [lastOrderNumber, setLastOrderNumber] = useState(null);
 
   const handleAddToCart = (product) => {
     // Check if product already exists in cart
@@ -37,7 +40,7 @@ function App() {
     }
 
     // Open cart modal
-    setIsCartOpen(true);
+    // (do not auto-open cart on add)
   };
 
   const handleUpdateQuantity = (cartId, newQuantity) => {
@@ -72,6 +75,14 @@ function App() {
     setIsCheckoutOpen(true);
   };
 
+  const handleOrderPlaced = (orderNumber) => {
+    // close checkout, clear cart, and show order placed sidebar
+    setIsCheckoutOpen(false);
+    setCart([]);
+    setLastOrderNumber(orderNumber || null);
+    setIsOrderPlacedOpen(true);
+  };
+
   return (
     <Router>
       <div className="App">
@@ -90,8 +101,15 @@ function App() {
         <Checkout
           isOpen={isCheckoutOpen}
           onClose={() => setIsCheckoutOpen(false)}
+          onOrderPlaced={handleOrderPlaced}
           cartItems={cart}
           total={getTotal()}
+        />
+        {/* Order placed sidebar */}
+        <OrderPlaced
+          isOpen={isOrderPlacedOpen}
+          onClose={() => setIsOrderPlacedOpen(false)}
+          orderNumber={lastOrderNumber}
         />
         <ScrollToTop />
         <main className="main-content">

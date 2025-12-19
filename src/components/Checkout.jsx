@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Checkout.css";
 
-const Checkout = ({ isOpen, onClose, cartItems, total }) => {
+const Checkout = ({ isOpen, onClose, cartItems, total, onOrderPlaced }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -47,7 +47,12 @@ const Checkout = ({ isOpen, onClose, cartItems, total }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Order submitted:", formData);
-    alert("Order placed successfully! (Demo)");
+    // simulate order placement
+    const orderNumber = Math.floor(Math.random() * 900000) + 100000;
+    if (typeof onOrderPlaced === "function") {
+      onOrderPlaced(orderNumber);
+    }
+    // close checkout
     handleClose();
   };
 
@@ -235,7 +240,7 @@ const Checkout = ({ isOpen, onClose, cartItems, total }) => {
 
             {/* Action Buttons */}
             <div className="checkout-actions">
-              <button type="submit" className="btn-place-order">
+              <button type="" className="btn-place-order">
                 Place Order
               </button>
               <button type="button" className="btn-back" onClick={handleClose}>
