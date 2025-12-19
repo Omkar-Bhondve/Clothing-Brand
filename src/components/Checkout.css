@@ -1,0 +1,223 @@
+/* Checkout Sidebar Styles — matching Cart layout */
+.checkout-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+  z-index: 40;
+}
+
+.checkout-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.checkout-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: var(--cart-width, 420px);
+  max-width: 100%;
+  background: var(--bg, #ffffff);
+  transform: translateX(110%);
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 0 40px rgba(2, 6, 23, 0.12);
+}
+
+.checkout-sidebar.active {
+  transform: translateX(0);
+}
+
+.checkout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.checkout-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkout-close {
+  background: transparent;
+  border: 0;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--muted, #6b7280);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  z-index: 51;
+  transition: color 0.2s ease;
+}
+.checkout-close:hover {
+  color: var(--accent, #111827);
+}
+.checkout-close:active {
+  transform: scale(0.95);
+}
+
+.checkout-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-form {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-section legend {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent, #111827);
+  margin-bottom: 0.3rem;
+}
+
+.checkout-form input {
+  padding: 0.7rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.checkout-form input:focus {
+  outline: none;
+  border-color: var(--accent, #111827);
+  box-shadow: 0 0 0 2px rgba(17, 24, 39, 0.08);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: var(--muted, #6b7280);
+}
+
+.summary-row.total {
+  font-weight: 800;
+  color: var(--accent, #111827);
+  font-size: 1.05rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.checkout-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0 0 1rem 0;
+  margin-top: auto;
+}
+
+.btn-place-order {
+  background: var(--accent, #111827);
+  color: #fff;
+  border: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.btn-place-order:hover {
+  background: #1f2937;
+}
+
+.btn-place-order:active {
+  transform: scale(0.98);
+}
+
+.btn-back {
+  margin-top: 0;
+  background: transparent;
+  border: 1px solid #e6e6e6;
+  padding: 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.btn-back:hover {
+  background: #f9fafb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 520px) {
+  .checkout-sidebar {
+    width: 100%;
+  }
+
+  .checkout-header h2 {
+    font-size: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Scrollbar styling */
+.checkout-body::-webkit-scrollbar {
+  width: 10px;
+}
+
+.checkout-body::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+
+/* Focus states for accessibility */
+.checkout-close:focus {
+  outline: 2px solid rgba(17, 24, 39, 0.12);
+  outline-offset: 2px;
+}
